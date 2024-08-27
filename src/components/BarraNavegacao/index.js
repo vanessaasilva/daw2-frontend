@@ -37,7 +37,9 @@ function BarraNavegacao() {
   };
 
     return(
-        <AppBar position="static">
+        <AppBar 
+        sx={{backgroundColor: "#BC8531"}}
+        position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
