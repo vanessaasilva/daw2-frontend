@@ -1,13 +1,16 @@
 import React from "react"
 
 
-function FormularioServiso() {
+function Formulario() {
 
     return(
       <div>
 
+    
       </div>
     );
 }
 
-export default FormularioServiso;
+
+
+export default Formulario;
