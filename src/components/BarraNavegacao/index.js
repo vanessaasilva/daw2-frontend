@@ -8,25 +8,29 @@ import Logo from '../../assets/images/file.png'
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
-import { Modal, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
 
 function BarraNavegacao() {
 
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const Formulario = () => {
+
+  }
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -68,51 +72,55 @@ function BarraNavegacao() {
                   Agendar
                 </Button>
                 <Menu {...bindMenu(popupState)}>
-                  <MenuItem onClick={handleOpen}>Banho e tosa</MenuItem>
-                  <MenuItem onClick={popupState.close}>Consultas</MenuItem>
-                  <MenuItem onClick={popupState.close}>Vacinação</MenuItem>
+                  <MenuItem onClick={handleClickOpen}>Banho e tosa</MenuItem>
+                  <MenuItem onClick={handleClickOpen}>Consultas</MenuItem>
+                  <MenuItem onClick={handleClickOpen}>Vacinação</MenuItem>
                 </Menu>
               </React.Fragment>
             )}
           </PopupState>
           <Button color="inherit">Sair</Button>
-        </Toolbar>
-
-        <div className="">
-          <Modal
+          <Dialog
             open={open}
             onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
+            PaperProps={{
+              component: 'form',
+              onSubmit: (event) => {
+                event.preventDefault();
+                const formData = new FormData(event.currentTarget);
+                const formJson = Object.fromEntries(formData.entries());
+                const email = formJson.email;
+                console.log(email);
+                handleClose();
+              },
+            }}
           >
-            <Box sx={style}>
-              <Box sx={{
-                display: 'flex',
-                alignItems: 'flex-start',
-                flexDirection: 'column',
-                border: 1,
-                p: 1,
-                m: 1,
-                bgcolor: 'background.paper',
-                borderRadius: 1,
-              }}
-              >
-                <Typography id="modal-modal-title" variant="h6" component="h2">
-                  <div className="Informacoes">
-                    <TextField id="standard-basic" label="Nome do Pet" variant="standard" />
-                    <TextField id="standard-basic" label="Nome do Tutor" variant="standard" />
-                    <TextField id="standard-basic" label="Contato" variant="standard" />
-                  </div>
-                </Typography>
-              </Box>
+            <DialogTitle>Nome do Pet</DialogTitle>
+            <DialogContent>
+              <DialogContentText>
+                Informe o nome do Animal de estimação
+              </DialogContentText>
+              <TextField
+                autoFocus
+                required
+                margin="dense"
+                id="name"
+                name="string"
+                type="string"
+                fullWidth
+                variant="standard"
+              />
+            </DialogContent>
 
-            </Box>
-          </Modal>
-        </div>
+            <DialogActions>
+              <Button onClick={handleClose}>Cancelar</Button>
+              <Button type="submit">Continuar</Button>
+            </DialogActions>
+          </Dialog>
+        </Toolbar>
       </AppBar>
     </Box>
   );
-
 }
 
 export default BarraNavegacao;
