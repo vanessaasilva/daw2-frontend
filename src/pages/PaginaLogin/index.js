@@ -54,7 +54,7 @@ function PaginaLogin() {
               id="cpf"
               label="cpf"
               name="cpf"
-              autoComplete="cpf"
+              autoComplete="nome"
               autoFocus
             />
             <TextField
