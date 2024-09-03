@@ -7,7 +7,7 @@ function PaginaInicial() {
     return (
         <div>
             <BarraNavegacao/>
-            aqui e a pagina inicial
+            
 
         </div>
 
