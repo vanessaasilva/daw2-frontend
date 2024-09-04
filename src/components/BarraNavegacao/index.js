@@ -14,9 +14,11 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-
+import { useNavigate } from "react-router-dom";
 
 function BarraNavegacao() {
+
+  const navigate = useNavigate();
 
   const [open, setOpen] = React.useState(false);
 
@@ -46,12 +48,17 @@ function BarraNavegacao() {
               MyPets
             </h1>
           </div>
-          <img
-            src={Logo} alt="Logo"
-            style={{
-              height: 90,
-              marginLeft: 5,
-              marginTop: 10
+          <Box
+            sx={{
+              width: '100%',
+              maxWidth: '100px',
+              minWidth: '120px',
+              height: 'auto',
+              backgroundImage: `url(${Logo})`,
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: 'contain',
+              backgroundPosition: 'left',
+              paddingTop: '7%'
             }}
           />
 
@@ -79,7 +86,12 @@ function BarraNavegacao() {
               </React.Fragment>
             )}
           </PopupState>
-          <Button color="inherit">Sair</Button>
+          <Button
+            color="inherit"
+            onClick={() => { navigate("/login") }}
+          >
+            Sair
+          </Button>
           <Dialog
             open={open}
             onClose={handleClose}
@@ -111,7 +123,6 @@ function BarraNavegacao() {
                 variant="standard"
               />
             </DialogContent>
-
             <DialogActions>
               <Button onClick={handleClose}>Cancelar</Button>
               <Button type="submit">Continuar</Button>
