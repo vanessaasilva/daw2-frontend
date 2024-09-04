@@ -6,17 +6,28 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Logo from '../../assets/images/petimg.png';
+import { useNavigate } from "react-router-dom";
+
 const defaultTheme = createTheme();
 
+
 function PaginaLogin() {
+   
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    let email = data.get('email');
+    let password = data.get('password');
+
+   
+
+    if(email !== null || password !== null){
+  return(
+  'campoobrigatorio'
+  )
+    }
   };
 
   return (
@@ -25,7 +36,7 @@ function PaginaLogin() {
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 10,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -42,11 +53,11 @@ function PaginaLogin() {
               backgroundRepeat: 'no-repeat',
               backgroundSize: 'contain',
               backgroundPosition: 'center',
-              paddingTop: '50%',
-
+              paddingTop: '75%',
+    
             }}
           />
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 2 ,}}>
             <TextField
               margin="normal"
               required
@@ -71,7 +82,7 @@ function PaginaLogin() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 1, mb: 2 }}
             >
               Entrar
             </Button>
