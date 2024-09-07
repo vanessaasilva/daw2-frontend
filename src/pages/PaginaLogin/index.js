@@ -12,21 +12,26 @@ const defaultTheme = createTheme();
 
 
 function PaginaLogin() {
-   
+
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    let email = data.get('email');
-    let password = data.get('password');
+    let cpf = data.get('cpf');
+    let senha = data.get('senha');
 
-   
 
-    if(email !== null || password !== null){
-  return(
-  'campoobrigatorio'
-  )
+
+
+    if (cpf === '' || senha === '') {
+
+      console.log("campos obrigatorios nao preenchidos")
+
+
+    } else {
+
+      navigate("/inicial")
     }
   };
 
@@ -54,10 +59,10 @@ function PaginaLogin() {
               backgroundSize: 'contain',
               backgroundPosition: 'center',
               paddingTop: '75%',
-    
+
             }}
           />
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 2 ,}}>
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 2, }}>
             <TextField
               margin="normal"
               required
