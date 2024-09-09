@@ -7,7 +7,6 @@ function PaginaInicial() {
     return (
         <div>
             <BarraNavegacao/>
-         
 
         </div>
 
