@@ -1,38 +1,102 @@
 import react from "react";
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Logo from '../../assets/images/petimg.png';
+import { useNavigate } from "react-router-dom";
+
+const defaultTheme = createTheme();
+
 
 function PaginaLogin() {
 
-    return (
+  const navigate = useNavigate();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    let cpf = data.get('cpf');
+    let senha = data.get('senha');
+
+
+
+
+    if (cpf === '' || senha === '') {
+
+      console.log("campos obrigatorios nao preenchidos")
+
+
+    } else {
+
+      navigate("/inicial")
+    }
+  };
+
+  return (
+    <ThemeProvider theme={defaultTheme}>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
         <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          '& > :not(style)': { m: 1 },
-        }}
-      >
-        <TextField
-          helperText="cpf"
-          id="demo-helper-text-aligned"
-          label="inserir cpf"
-        />
-        <TextField
-          helperText="senha "
-          id="demo-helper-text-aligned-no-helper"
-          label="inserir senha"
-        />
-         <Button variant="contained">Contained</Button>
-      </Box>
-    );
+          sx={{
+            marginTop: 10,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
 
+          <Box
+            sx={{
+              width: '100%',
+              maxwidth: '150px',
+              minWidth: '120px',
+              height: 'auto',
+              backgroundImage: `url(${Logo})`,
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: 'contain',
+              backgroundPosition: 'center',
+              paddingTop: '75%',
 
+            }}
+          />
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 2, }}>
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="cpf"
+              label="cpf"
+              name="cpf"
+              autoComplete="nome"
+              autoFocus
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="Senha"
+              label="Senha"
+              type="Senha"
+              id="Senha"
+              autoComplete="current-Senha"
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 1, mb: 2 }}
+            >
+              Entrar
+            </Button>
 
-
-
-
+          </Box>
+        </Box>
+      </Container>
+    </ThemeProvider>
+  );
 }
 
 export default PaginaLogin;
