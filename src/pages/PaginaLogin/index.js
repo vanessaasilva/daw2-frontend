@@ -13,6 +13,7 @@ const defaultTheme = createTheme();
 
 function PaginaLogin() {
 
+
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
@@ -20,9 +21,6 @@ function PaginaLogin() {
     const data = new FormData(event.currentTarget);
     let cpf = data.get('cpf');
     let senha = data.get('senha');
-
-
-
 
     if (cpf === '' || senha === '') {
 

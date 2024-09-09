@@ -1,0 +1,10 @@
+.Informacoes{
+    display: flex;
+    flex-direction: row;
+    border: 1px solid red;
+}
+
+.Horarios{
+    margin-top: 2px;
+    border: 1px solid red;
+}
